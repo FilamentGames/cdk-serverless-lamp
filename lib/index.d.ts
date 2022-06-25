@@ -1,3 +1,4 @@
+import * as apigateway from '@aws-cdk/aws-apigatewayv2-alpha';
 import { aws_ec2 as ec2, aws_lambda as lambda, aws_rds as rds, aws_secretsmanager as secretsmanager } from 'aws-cdk-lib';
 import { Construct } from 'constructs';
 export interface DatabaseConfig {
@@ -61,6 +62,7 @@ export interface ServerlessApiProps {
 export declare class ServerlessApi extends Construct {
     readonly handler: lambda.IFunction;
     readonly vpc?: ec2.IVpc;
+    readonly endpoint?: apigateway.HttpApi;
     constructor(scope: Construct, id: string, props: ServerlessApiProps);
 }
 /**
@@ -76,6 +78,7 @@ export interface ServerlessLaravelProps extends ServerlessApiProps {
  * Use `ServerlessLaravel` to create the serverless Laravel resource
  */
 export declare class ServerlessLaravel extends Construct {
+    readonly api?: ServerlessApi;
     constructor(scope: Construct, id: string, props: ServerlessLaravelProps);
 }
 export interface DatabaseProps {
