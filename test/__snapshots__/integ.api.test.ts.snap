@@ -87,7 +87,7 @@ Object {
         "VpcSecurityGroupIds": Array [
           Object {
             "Fn::GetAtt": Array [
-              "DatabaseClusterDBSecuirtyGroup4BD8146E",
+              "DatabaseClusterDBSecurityGroupBD6DA182",
               "GroupId",
             ],
           },
@@ -142,7 +142,7 @@ Object {
         "VpcSecurityGroupIds": Array [
           Object {
             "Fn::GetAtt": Array [
-              "DatabaseClusterDBSecuirtyGroup4BD8146E",
+              "DatabaseClusterDBSecurityGroupBD6DA182",
               "GroupId",
             ],
           },
@@ -193,9 +193,9 @@ Object {
       },
       "Type": "AWS::RDS::DBSubnetGroup",
     },
-    "DatabaseClusterDBSecuirtyGroup4BD8146E": Object {
+    "DatabaseClusterDBSecurityGroupBD6DA182": Object {
       "Properties": Object {
-        "GroupDescription": "testing-stack/DatabaseCluster/DB Secuirty Group",
+        "GroupDescription": "testing-stack/DatabaseCluster/DB Security Group",
         "SecurityGroupEgress": Array [
           Object {
             "CidrIp": "0.0.0.0/0",
@@ -209,20 +209,20 @@ Object {
       },
       "Type": "AWS::EC2::SecurityGroup",
     },
-    "DatabaseClusterDBSecuirtyGroupfromtestingstackDatabaseClusterDBSecuirtyGroup86BFF4783306D8567F4C": Object {
+    "DatabaseClusterDBSecurityGroupfromtestingstackDatabaseClusterDBSecurityGroup20270AE03306339DF87C": Object {
       "Properties": Object {
-        "Description": "from testingstackDatabaseClusterDBSecuirtyGroup86BFF478:3306",
+        "Description": "from testingstackDatabaseClusterDBSecurityGroup20270AE0:3306",
         "FromPort": 3306,
         "GroupId": Object {
           "Fn::GetAtt": Array [
-            "DatabaseClusterDBSecuirtyGroup4BD8146E",
+            "DatabaseClusterDBSecurityGroupBD6DA182",
             "GroupId",
           ],
         },
         "IpProtocol": "tcp",
         "SourceSecurityGroupId": Object {
           "Fn::GetAtt": Array [
-            "DatabaseClusterDBSecuirtyGroup4BD8146E",
+            "DatabaseClusterDBSecurityGroupBD6DA182",
             "GroupId",
           ],
         },
@@ -230,7 +230,7 @@ Object {
       },
       "Type": "AWS::EC2::SecurityGroupIngress",
     },
-    "DatabaseClusterDBSecuirtyGroupfromtestingstackDatabaseClusterDBSecuirtyGroup86BFF478IndirectPortBFC34999": Object {
+    "DatabaseClusterDBSecurityGroupfromtestingstackDatabaseClusterDBSecurityGroup20270AE0IndirectPort93E113CA": Object {
       "Properties": Object {
         "Description": "Allow connections to the database Cluster from the Proxy",
         "FromPort": Object {
@@ -241,14 +241,14 @@ Object {
         },
         "GroupId": Object {
           "Fn::GetAtt": Array [
-            "DatabaseClusterDBSecuirtyGroup4BD8146E",
+            "DatabaseClusterDBSecurityGroupBD6DA182",
             "GroupId",
           ],
         },
         "IpProtocol": "tcp",
         "SourceSecurityGroupId": Object {
           "Fn::GetAtt": Array [
-            "DatabaseClusterDBSecuirtyGroup4BD8146E",
+            "DatabaseClusterDBSecurityGroupBD6DA182",
             "GroupId",
           ],
         },
@@ -275,6 +275,18 @@ Object {
       },
       "Type": "AWS::SecretsManager::Secret",
       "UpdateReplacePolicy": "Delete",
+    },
+    "DatabaseClusterDbMasterSecretAttachment4F388165": Object {
+      "Properties": Object {
+        "SecretId": Object {
+          "Ref": "DatabaseClusterDbMasterSecret98DF2329",
+        },
+        "TargetId": Object {
+          "Ref": "DatabaseClusterDBCluster27F7FF5A",
+        },
+        "TargetType": "AWS::RDS::DBCluster",
+      },
+      "Type": "AWS::SecretsManager::SecretTargetAttachment",
     },
     "DatabaseClusterRdsProxyRole9B27D8A3": Object {
       "Properties": Object {
