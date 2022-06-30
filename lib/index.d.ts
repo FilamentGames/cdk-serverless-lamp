@@ -62,7 +62,7 @@ export interface ServerlessApiProps {
 export declare class ServerlessApi extends Construct {
     readonly handler: lambda.IFunction;
     readonly vpc?: ec2.IVpc;
-    readonly endpoint?: apigateway.HttpApi;
+    readonly endpoint: apigateway.HttpApi;
     constructor(scope: Construct, id: string, props: ServerlessApiProps);
 }
 /**
@@ -78,7 +78,7 @@ export interface ServerlessLaravelProps extends ServerlessApiProps {
  * Use `ServerlessLaravel` to create the serverless Laravel resource
  */
 export declare class ServerlessLaravel extends Construct {
-    readonly api?: ServerlessApi;
+    readonly api: ServerlessApi;
     constructor(scope: Construct, id: string, props: ServerlessLaravelProps);
 }
 export interface DatabaseProps {
