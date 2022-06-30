@@ -39,15 +39,10 @@ new DatabaseCluster(scope: Construct, id: string, props: DatabaseProps)
 * **scope** (<code>[Construct](#constructs-construct)</code>)  *No description*
 * **id** (<code>string</code>)  *No description*
 * **props** (<code>[DatabaseProps](#cdk-serverless-lamp-databaseprops)</code>)  *No description*
-  * **vpc** (<code>[aws_ec2.IVpc](#aws-cdk-lib-aws-ec2-ivpc)</code>)  The VPC for the DatabaseCluster. 
-  * **engine** (<code>[aws_rds.IClusterEngine](#aws-cdk-lib-aws-rds-iclusterengine)</code>)  database cluster engine. __*Default*__: AURORA_MYSQL
-  * **extraDatabaseOptions** (<code>[aws_rds.DatabaseClusterProps](#aws-cdk-lib-aws-rds-databaseclusterprops)</code>)  Define additional cluster options. __*Optional*__
-  * **instanceCapacity** (<code>number</code>)  How many replicas/instances to create. __*Default*__: 1
-  * **instanceType** (<code>[aws_ec2.InstanceType](#aws-cdk-lib-aws-ec2-instancetype)</code>)  instance type of the cluster. __*Default*__: t3.medium (or, more precisely, db.t3.medium)
+  * **databaseOptions** (<code>[aws_rds.DatabaseClusterProps](#aws-cdk-lib-aws-rds-databaseclusterprops)</code>)  Define cluster options. 
   * **masterUserName** (<code>string</code>)  master username. __*Default*__: admin
   * **rdsProxy** (<code>boolean</code>)  enable the Amazon RDS proxy. __*Default*__: true
   * **rdsProxyOptions** (<code>[aws_rds.DatabaseProxyOptions](#aws-cdk-lib-aws-rds-databaseproxyoptions)</code>)  Additional RDS Proxy Options. __*Optional*__
-  * **vpcSubnets** (<code>[aws_ec2.SubnetSelection](#aws-cdk-lib-aws-ec2-subnetselection)</code>)  List of subnets to use when creating subnet group. __*Optional*__
 
 
 
@@ -164,15 +159,10 @@ Name | Type | Description
 
 Name | Type | Description 
 -----|------|-------------
-**vpc** | <code>[aws_ec2.IVpc](#aws-cdk-lib-aws-ec2-ivpc)</code> | The VPC for the DatabaseCluster.
-**engine**? | <code>[aws_rds.IClusterEngine](#aws-cdk-lib-aws-rds-iclusterengine)</code> | database cluster engine.<br/>__*Default*__: AURORA_MYSQL
-**extraDatabaseOptions**? | <code>[aws_rds.DatabaseClusterProps](#aws-cdk-lib-aws-rds-databaseclusterprops)</code> | Define additional cluster options.<br/>__*Optional*__
-**instanceCapacity**? | <code>number</code> | How many replicas/instances to create.<br/>__*Default*__: 1
-**instanceType**? | <code>[aws_ec2.InstanceType](#aws-cdk-lib-aws-ec2-instancetype)</code> | instance type of the cluster.<br/>__*Default*__: t3.medium (or, more precisely, db.t3.medium)
+**databaseOptions** | <code>[aws_rds.DatabaseClusterProps](#aws-cdk-lib-aws-rds-databaseclusterprops)</code> | Define cluster options.
 **masterUserName**? | <code>string</code> | master username.<br/>__*Default*__: admin
 **rdsProxy**? | <code>boolean</code> | enable the Amazon RDS proxy.<br/>__*Default*__: true
 **rdsProxyOptions**? | <code>[aws_rds.DatabaseProxyOptions](#aws-cdk-lib-aws-rds-databaseproxyoptions)</code> | Additional RDS Proxy Options.<br/>__*Optional*__
-**vpcSubnets**? | <code>[aws_ec2.SubnetSelection](#aws-cdk-lib-aws-ec2-subnetselection)</code> | List of subnets to use when creating subnet group.<br/>__*Optional*__
 
 
 
