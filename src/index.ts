@@ -10,6 +10,8 @@ import {
   aws_rds as rds,
   aws_secretsmanager as secretsmanager,
 } from 'aws-cdk-lib';
+import { ISecurityGroup } from 'aws-cdk-lib/aws-ec2';
+import { IDatabaseCluster } from 'aws-cdk-lib/aws-rds';
 import { Construct } from 'constructs';
 
 
@@ -178,6 +180,8 @@ export class DatabaseCluster extends Construct {
   readonly rdsProxy?: rds.DatabaseProxy;
   readonly masterUser: string;
   readonly masterPassword: secretsmanager.ISecret;
+  readonly dbConnectionGroup: ISecurityGroup;
+  readonly dbCluster: IDatabaseCluster;
 
   constructor(scope: Construct, id: string, props: DatabaseProps) {
     super(scope, id);
@@ -200,12 +204,12 @@ export class DatabaseCluster extends Construct {
 
     this.masterPassword = masterUserSecret;
 
-    const dbConnectionGroup = new ec2.SecurityGroup(this, 'DB Security Group', {
+    const dbConnectionGroup = this.dbConnectionGroup = new ec2.SecurityGroup(this, 'DB Security Group', {
       vpc: props.databaseOptions.instanceProps.vpc,
       allowAllOutbound: false,
     });
 
-    const dbCluster = new rds.DatabaseCluster(this, 'DBCluster', {
+    const dbCluster = this.dbCluster = new rds.DatabaseCluster(this, 'DBCluster', {
       ...props.databaseOptions,
       instanceProps: {
         ...props.databaseOptions.instanceProps,
