@@ -84,6 +84,7 @@ new ServerlessApi(scope: Construct, id: string, props: ServerlessApiProps)
 * **props** (<code>[ServerlessApiProps](#cdk-serverless-lamp-serverlessapiprops)</code>)  *No description*
   * **brefLayerVersion** (<code>string</code>)  AWS Lambda layer version from the Bref runtime. 
   * **databaseConfig** (<code>[DatabaseConfig](#cdk-serverless-lamp-databaseconfig)</code>)  Database configurations. __*Optional*__
+  * **disableExecuteApiEndpoint** (<code>boolean</code>)  Whether to disable the default execute api endpoint. __*Default*__: false
   * **environment** (<code>Map<string, string></code>)  Additional app environment variables. __*Optional*__
   * **handler** (<code>[aws_lambda.IFunction](#aws-cdk-lib-aws-lambda-ifunction)</code>)  custom lambda function for the API. __*Default*__: A Lambda function with Lavavel and Bref support will be created
   * **lambdaCodePath** (<code>string</code>)  custom lambda code asset path. __*Default*__: DEFAULT_LAMBDA_ASSET_PATH
@@ -164,6 +165,7 @@ new ServerlessLaravel(scope: Construct, id: string, props: ServerlessLaravelProp
 * **props** (<code>[ServerlessLaravelProps](#cdk-serverless-lamp-serverlesslaravelprops)</code>)  *No description*
   * **brefLayerVersion** (<code>string</code>)  AWS Lambda layer version from the Bref runtime. 
   * **databaseConfig** (<code>[DatabaseConfig](#cdk-serverless-lamp-databaseconfig)</code>)  Database configurations. __*Optional*__
+  * **disableExecuteApiEndpoint** (<code>boolean</code>)  Whether to disable the default execute api endpoint. __*Default*__: false
   * **environment** (<code>Map<string, string></code>)  Additional app environment variables. __*Optional*__
   * **handler** (<code>[aws_lambda.IFunction](#aws-cdk-lib-aws-lambda-ifunction)</code>)  custom lambda function for the API. __*Default*__: A Lambda function with Lavavel and Bref support will be created
   * **lambdaCodePath** (<code>string</code>)  custom lambda code asset path. __*Default*__: DEFAULT_LAMBDA_ASSET_PATH
@@ -247,6 +249,7 @@ Name | Type | Description
 -----|------|-------------
 **brefLayerVersion** | <code>string</code> | AWS Lambda layer version from the Bref runtime.
 **databaseConfig**? | <code>[DatabaseConfig](#cdk-serverless-lamp-databaseconfig)</code> | Database configurations.<br/>__*Optional*__
+**disableExecuteApiEndpoint**? | <code>boolean</code> | Whether to disable the default execute api endpoint.<br/>__*Default*__: false
 **environment**? | <code>Map<string, string></code> | Additional app environment variables.<br/>__*Optional*__
 **handler**? | <code>[aws_lambda.IFunction](#aws-cdk-lib-aws-lambda-ifunction)</code> | custom lambda function for the API.<br/>__*Default*__: A Lambda function with Lavavel and Bref support will be created
 **lambdaCodePath**? | <code>string</code> | custom lambda code asset path.<br/>__*Default*__: DEFAULT_LAMBDA_ASSET_PATH
@@ -306,6 +309,7 @@ Name | Type | Description
 -----|------|-------------
 **brefLayerVersion** | <code>string</code> | AWS Lambda layer version from the Bref runtime.
 **databaseConfig**? | <code>[DatabaseConfig](#cdk-serverless-lamp-databaseconfig)</code> | Database configurations.<br/>__*Optional*__
+**disableExecuteApiEndpoint**? | <code>boolean</code> | Whether to disable the default execute api endpoint.<br/>__*Default*__: false
 **environment**? | <code>Map<string, string></code> | Additional app environment variables.<br/>__*Optional*__
 **handler**? | <code>[aws_lambda.IFunction](#aws-cdk-lib-aws-lambda-ifunction)</code> | custom lambda function for the API.<br/>__*Default*__: A Lambda function with Lavavel and Bref support will be created
 **lambdaCodePath**? | <code>string</code> | custom lambda code asset path.<br/>__*Default*__: DEFAULT_LAMBDA_ASSET_PATH
