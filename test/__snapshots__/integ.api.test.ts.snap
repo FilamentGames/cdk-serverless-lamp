@@ -19,14 +19,14 @@ Object {
         ],
       },
     },
-    "ServerlessLaravelEndpointURLD6B63280": Object {
+    "ServerlessLaravelEndpointURLA23ABC75": Object {
       "Value": Object {
         "Fn::Join": Array [
           "",
           Array [
             "https://",
             Object {
-              "Ref": "ServerlessLaravelapiservice4065BAA9",
+              "Ref": "ServerlessLaravelapiservice53826F81",
             },
             ".execute-api.",
             Object {
@@ -343,17 +343,139 @@ Object {
       },
       "Type": "AWS::IAM::Policy",
     },
-    "ServerlessLaravelapiservice4065BAA9": Object {
+    "ServerlessLaravelConsolehandlerF519DBBE": Object {
+      "DependsOn": Array [
+        "ServerlessLaravelConsolehandlerServiceRoleADE744B8",
+      ],
+      "Properties": Object {
+        "Code": Object {
+          "S3Bucket": Object {
+            "Fn::Sub": "cdk-hnb659fds-assets-\${AWS::AccountId}-\${AWS::Region}",
+          },
+          "S3Key": "b7826d21185e020066e56b133136e1082372d08cf21209a8823ac39710782f68.zip",
+        },
+        "Environment": Object {
+          "Variables": Object {
+            "APP_STORAGE": "/tmp",
+            "DB_READER": Object {
+              "Fn::GetAtt": Array [
+                "DatabaseClusterDBClusterRDSProxyB1CC2CD9",
+                "Endpoint",
+              ],
+            },
+            "DB_USER": "admin",
+            "DB_WRITER": Object {
+              "Fn::GetAtt": Array [
+                "DatabaseClusterDBClusterRDSProxyB1CC2CD9",
+                "Endpoint",
+              ],
+            },
+          },
+        },
+        "Handler": "artisan",
+        "Layers": Array [
+          "arn:aws:lambda:us-east-1:209497400698:layer:php-74:50",
+          "arn:aws:lambda:us-east-1:209497400698:layer:console:64",
+        ],
+        "Role": Object {
+          "Fn::GetAtt": Array [
+            "ServerlessLaravelConsolehandlerServiceRoleADE744B8",
+            "Arn",
+          ],
+        },
+        "Runtime": "provided.al2",
+        "Timeout": 120,
+        "VpcConfig": Object {
+          "SecurityGroupIds": Array [
+            Object {
+              "Fn::GetAtt": Array [
+                "ServerlessLaravelConsolehandlerSecurityGroup9F4EB85B",
+                "GroupId",
+              ],
+            },
+          ],
+          "SubnetIds": Array [
+            Object {
+              "Ref": "VpcPrivateSubnet1Subnet536B997A",
+            },
+            Object {
+              "Ref": "VpcPrivateSubnet2Subnet3788AAA1",
+            },
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Function",
+    },
+    "ServerlessLaravelConsolehandlerSecurityGroup9F4EB85B": Object {
+      "Properties": Object {
+        "GroupDescription": "Automatic security group for Lambda Function testingstackServerlessLaravelConsolehandler5B7924C3",
+        "SecurityGroupEgress": Array [
+          Object {
+            "CidrIp": "0.0.0.0/0",
+            "Description": "Allow all outbound traffic by default",
+            "IpProtocol": "-1",
+          },
+        ],
+        "VpcId": Object {
+          "Ref": "Vpc8378EB38",
+        },
+      },
+      "Type": "AWS::EC2::SecurityGroup",
+    },
+    "ServerlessLaravelConsolehandlerServiceRoleADE744B8": Object {
+      "Properties": Object {
+        "AssumeRolePolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": Object {
+                "Service": "lambda.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "ManagedPolicyArns": Array [
+          Object {
+            "Fn::Join": Array [
+              "",
+              Array [
+                "arn:",
+                Object {
+                  "Ref": "AWS::Partition",
+                },
+                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole",
+              ],
+            ],
+          },
+          Object {
+            "Fn::Join": Array [
+              "",
+              Array [
+                "arn:",
+                Object {
+                  "Ref": "AWS::Partition",
+                },
+                ":iam::aws:policy/service-role/AWSLambdaVPCAccessExecutionRole",
+              ],
+            ],
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "ServerlessLaravelapiservice53826F81": Object {
       "Properties": Object {
         "Name": "apiservice",
         "ProtocolType": "HTTP",
       },
       "Type": "AWS::ApiGatewayV2::Api",
     },
-    "ServerlessLaravelapiserviceDefaultRouteEE61294B": Object {
+    "ServerlessLaravelapiserviceDefaultRoute2AD08261": Object {
       "Properties": Object {
         "ApiId": Object {
-          "Ref": "ServerlessLaravelapiservice4065BAA9",
+          "Ref": "ServerlessLaravelapiservice53826F81",
         },
         "AuthorizationType": "NONE",
         "RouteKey": "$default",
@@ -363,7 +485,7 @@ Object {
             Array [
               "integrations/",
               Object {
-                "Ref": "ServerlessLaravelapiserviceDefaultRoutelambdaHandlerA4AC0A28",
+                "Ref": "ServerlessLaravelapiserviceDefaultRoutelambdaHandler621374A2",
               },
             ],
           ],
@@ -371,15 +493,15 @@ Object {
       },
       "Type": "AWS::ApiGatewayV2::Route",
     },
-    "ServerlessLaravelapiserviceDefaultRoutelambdaHandlerA4AC0A28": Object {
+    "ServerlessLaravelapiserviceDefaultRoutelambdaHandler621374A2": Object {
       "Properties": Object {
         "ApiId": Object {
-          "Ref": "ServerlessLaravelapiservice4065BAA9",
+          "Ref": "ServerlessLaravelapiservice53826F81",
         },
         "IntegrationType": "AWS_PROXY",
         "IntegrationUri": Object {
           "Fn::GetAtt": Array [
-            "ServerlessLaravelhandler0B420B12",
+            "ServerlessLaravelhandler16324A77",
             "Arn",
           ],
         },
@@ -387,12 +509,12 @@ Object {
       },
       "Type": "AWS::ApiGatewayV2::Integration",
     },
-    "ServerlessLaravelapiserviceDefaultRoutelambdaHandlerPermissionF06434EA": Object {
+    "ServerlessLaravelapiserviceDefaultRoutelambdaHandlerPermissionE08C1492": Object {
       "Properties": Object {
         "Action": "lambda:InvokeFunction",
         "FunctionName": Object {
           "Fn::GetAtt": Array [
-            "ServerlessLaravelhandler0B420B12",
+            "ServerlessLaravelhandler16324A77",
             "Arn",
           ],
         },
@@ -415,7 +537,7 @@ Object {
               },
               ":",
               Object {
-                "Ref": "ServerlessLaravelapiservice4065BAA9",
+                "Ref": "ServerlessLaravelapiservice53826F81",
               },
               "/*/*",
             ],
@@ -424,19 +546,19 @@ Object {
       },
       "Type": "AWS::Lambda::Permission",
     },
-    "ServerlessLaravelapiserviceDefaultStage1EEE3BC1": Object {
+    "ServerlessLaravelapiserviceDefaultStage712414CB": Object {
       "Properties": Object {
         "ApiId": Object {
-          "Ref": "ServerlessLaravelapiservice4065BAA9",
+          "Ref": "ServerlessLaravelapiservice53826F81",
         },
         "AutoDeploy": true,
         "StageName": "$default",
       },
       "Type": "AWS::ApiGatewayV2::Stage",
     },
-    "ServerlessLaravelhandler0B420B12": Object {
+    "ServerlessLaravelhandler16324A77": Object {
       "DependsOn": Array [
-        "ServerlessLaravelhandlerServiceRoleB6C767F6",
+        "ServerlessLaravelhandlerServiceRole5770A873",
       ],
       "Properties": Object {
         "Code": Object {
@@ -469,7 +591,7 @@ Object {
         ],
         "Role": Object {
           "Fn::GetAtt": Array [
-            "ServerlessLaravelhandlerServiceRoleB6C767F6",
+            "ServerlessLaravelhandlerServiceRole5770A873",
             "Arn",
           ],
         },
@@ -479,7 +601,7 @@ Object {
           "SecurityGroupIds": Array [
             Object {
               "Fn::GetAtt": Array [
-                "ServerlessLaravelhandlerSecurityGroup6B7D4730",
+                "ServerlessLaravelhandlerSecurityGroupFE3E2E6D",
                 "GroupId",
               ],
             },
@@ -496,9 +618,9 @@ Object {
       },
       "Type": "AWS::Lambda::Function",
     },
-    "ServerlessLaravelhandlerSecurityGroup6B7D4730": Object {
+    "ServerlessLaravelhandlerSecurityGroupFE3E2E6D": Object {
       "Properties": Object {
-        "GroupDescription": "Automatic security group for Lambda Function testingstackServerlessLaravelhandler27F785F5",
+        "GroupDescription": "Automatic security group for Lambda Function testingstackServerlessLaravelhandler5BCD89B3",
         "SecurityGroupEgress": Array [
           Object {
             "CidrIp": "0.0.0.0/0",
@@ -512,7 +634,7 @@ Object {
       },
       "Type": "AWS::EC2::SecurityGroup",
     },
-    "ServerlessLaravelhandlerServiceRoleB6C767F6": Object {
+    "ServerlessLaravelhandlerServiceRole5770A873": Object {
       "Properties": Object {
         "AssumeRolePolicyDocument": Object {
           "Statement": Array [
