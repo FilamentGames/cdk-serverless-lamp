@@ -63,6 +63,12 @@ export interface ServerlessApiProps {
     readonly environment?: {
         [key: string]: string;
     };
+    /**
+     * Whether to disable the default execute api endpoint.
+     * You can enable this when you have a custom domain mapped.
+     * @default - false
+     */
+    readonly disableExecuteApiEndpoint?: boolean;
 }
 /**
  * Use `ServerlessApi` to create the serverless API resource
