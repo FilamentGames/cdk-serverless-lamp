@@ -247,7 +247,6 @@ export class DatabaseCluster extends Construct {
         password: masterUserSecret.secretValueFromJson('password'),
       },
       instances: props.instanceCapacity,
-      removalPolicy: RemovalPolicy.DESTROY,
     });
 
     // Workaround for bug where TargetGroupName is not set but required
