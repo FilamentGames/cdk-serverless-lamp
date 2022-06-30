@@ -191,7 +191,7 @@ export interface DatabaseProps {
   /**
    * Additional RDS Proxy Options
    */
-  readonly extraRdsProxyOptions?: rds.DatabaseProxyOptions;
+  readonly rdsProxyOptions?: rds.DatabaseProxyOptions;
 
   /**
    * How many replicas/instances to create. Has to be at least 1.
@@ -278,7 +278,7 @@ export class DatabaseCluster extends Construct {
       }));
 
       const proxyOptions: rds.DatabaseProxyOptions = {
-        ...props.extraRdsProxyOptions,
+        ...props.rdsProxyOptions,
         vpc: props.vpc,
         secrets: [masterUserSecret],
         iamAuth: true,
