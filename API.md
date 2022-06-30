@@ -201,14 +201,6 @@ new ServerlessLaravelConsole(scope: Construct, id: string, props: ServerlessLara
 
 
 
-### Properties
-
-
-Name | Type | Description 
------|------|-------------
-**api** | <code>[ServerlessApi](#cdk-serverless-lamp-serverlessapi)</code> | <span></span>
-
-
 
 ## struct DatabaseConfig  <a id="cdk-serverless-lamp-databaseconfig"></a>
 
