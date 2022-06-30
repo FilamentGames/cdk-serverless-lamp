@@ -191,7 +191,7 @@ export interface DatabaseProps {
   /**
    * Additional RDS Proxy Options
    */
-  readonly rdsProxyOptions?: rds.DatabaseProxyOptions;
+  readonly rdsProxyOptions?: Partial<rds.DatabaseProxyOptions>;
 
   /**
    * How many replicas/instances to create. Has to be at least 1.
@@ -203,7 +203,7 @@ export interface DatabaseProps {
   /**
    * Define additional cluster options
    */
-  readonly extraDatabaseOptions?: rds.DatabaseClusterProps;
+  readonly extraDatabaseOptions?: Partial<rds.DatabaseClusterProps>;
 }
 
 export class DatabaseCluster extends Construct {
