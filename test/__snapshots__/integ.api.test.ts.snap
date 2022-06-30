@@ -51,7 +51,7 @@ Object {
   },
   "Resources": Object {
     "DatabaseClusterDBCluster27F7FF5A": Object {
-      "DeletionPolicy": "Delete",
+      "DeletionPolicy": "Snapshot",
       "Properties": Object {
         "CopyTagsToSnapshot": true,
         "DBClusterParameterGroupName": "default.aurora-mysql5.7",
@@ -94,7 +94,7 @@ Object {
         ],
       },
       "Type": "AWS::RDS::DBCluster",
-      "UpdateReplacePolicy": "Delete",
+      "UpdateReplacePolicy": "Snapshot",
     },
     "DatabaseClusterDBClusterInstance11F5999A0": Object {
       "DeletionPolicy": "Delete",
