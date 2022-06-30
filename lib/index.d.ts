@@ -75,16 +75,11 @@ export declare class ServerlessApi extends Construct {
  * Construct properties for `ServerlessLaravel`
  */
 export interface ServerlessLaravelProps extends ServerlessApiProps {
-    /**
-     * path to your local laravel directory with bref
-     */
-    readonly laravelPath: string;
 }
 /**
  * Use `ServerlessLaravel` to create the serverless Laravel resource
  */
-export declare class ServerlessLaravel extends Construct {
-    readonly api: ServerlessApi;
+export declare class ServerlessLaravel extends ServerlessApi {
     constructor(scope: Construct, id: string, props: ServerlessLaravelProps);
 }
 export interface DatabaseProps {
@@ -114,4 +109,102 @@ export declare class DatabaseCluster extends Construct {
     readonly masterUser: string;
     readonly masterPassword: secretsmanager.ISecret;
     constructor(scope: Construct, id: string, props: DatabaseProps);
+}
+/**
+ * Construct properties for `ServerlessApi`
+ */
+export interface ServerlessConsoleProps {
+    /**
+     * path to console binary relative to lambdaCodePath
+     */
+    readonly handler: string;
+    /**
+     * custom lambda code asset path
+     *
+     * @default - DEFAULT_LAMBDA_ASSET_PATH
+     */
+    readonly lambdaCodePath?: string;
+    /**
+     * The arn of the php layer to use
+     */
+    readonly phpLayerVersion: string;
+    /**
+     * The arn of the console layer to use
+     */
+    readonly consoleLayerVersion: string;
+    /**
+     * The VPC for this stack
+     */
+    readonly vpc?: ec2.IVpc;
+    /**
+     * Database configurations
+     */
+    readonly databaseConfig?: DatabaseConfig;
+    /**
+     * RDS Proxy for the Lambda function
+     *
+     * @default - no db proxy
+     */
+    readonly rdsProxy?: rds.IDatabaseProxy;
+    /**
+     * Additional lambda environment variables
+     */
+    readonly environment?: {
+        [key: string]: string;
+    };
+}
+/**
+ * Use `ServerlessConsole` to create the serverless console resource
+ */
+export declare class ServerlessConsole extends Construct {
+    readonly handler: lambda.IFunction;
+    readonly vpc?: ec2.IVpc;
+    constructor(scope: Construct, id: string, props: ServerlessConsoleProps);
+}
+/**
+ * Construct properties for `ServerlessLaravel`
+ */
+export interface ServerlessLaravelConsoleProps {
+    /**
+     * path to console binary relative to lambdaCodePath
+     * @default - artisan
+     */
+    readonly handler?: string;
+    /**
+     * custom lambda code asset path
+     *
+     * @default - DEFAULT_LAMBDA_ASSET_PATH
+     */
+    readonly lambdaCodePath?: string;
+    /**
+     * The arn of the php layer to use
+     */
+    readonly phpLayerVersion: string;
+    /**
+     * The arn of the console layer to use
+     */
+    readonly consoleLayerVersion: string;
+    /**
+     * The VPC for this stack
+     */
+    readonly vpc?: ec2.IVpc;
+    /**
+     * Database configurations
+     */
+    readonly databaseConfig?: DatabaseConfig;
+    /**
+     * RDS Proxy for the Lambda function
+     *
+     * @default - no db proxy
+     */
+    readonly rdsProxy?: rds.IDatabaseProxy;
+    /**
+     * Additional lambda environment variables
+     */
+    readonly environment?: {
+        [key: string]: string;
+    };
+}
+export declare class ServerlessLaravelConsole extends Construct {
+    constructor(scope: Construct, id: string, props: ServerlessLaravelConsoleProps);
 }
