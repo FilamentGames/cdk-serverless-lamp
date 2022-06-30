@@ -189,9 +189,9 @@ export interface DatabaseProps {
   readonly rdsProxy?: boolean;
 
   /**
-   * RDS Proxy Options
+   * Additional RDS Proxy Options
    */
-  readonly rdsProxyOptions?: rds.DatabaseProxyOptions;
+  readonly extraRdsProxyOptions?: rds.DatabaseProxyOptions;
 
   /**
    * How many replicas/instances to create. Has to be at least 1.
@@ -200,6 +200,10 @@ export interface DatabaseProps {
    */
   readonly instanceCapacity?: number;
 
+  /**
+   * Define additional cluster options
+   */
+  readonly extraDatabaseOptions?: rds.DatabaseClusterProps;
 }
 
 export class DatabaseCluster extends Construct {
@@ -234,6 +238,7 @@ export class DatabaseCluster extends Construct {
     dbConnectionGroup.connections.allowInternally(ec2.Port.tcp(3306));
 
     const dbCluster = new rds.DatabaseCluster(this, 'DBCluster', {
+      ...props.extraDatabaseOptions,
       engine: rds.DatabaseClusterEngine.auroraMysql({
         version: rds.AuroraMysqlEngineVersion.VER_2_08_1,
       }),
@@ -273,6 +278,7 @@ export class DatabaseCluster extends Construct {
       }));
 
       const proxyOptions: rds.DatabaseProxyOptions = {
+        ...props.extraRdsProxyOptions,
         vpc: props.vpc,
         secrets: [masterUserSecret],
         iamAuth: true,
