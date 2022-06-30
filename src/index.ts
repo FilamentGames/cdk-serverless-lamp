@@ -258,7 +258,6 @@ export class DatabaseCluster extends Construct {
       },
       credentials: rds.Credentials.fromSecret(masterUserSecret),
       instances: props.instanceCapacity,
-      removalPolicy: RemovalPolicy.DESTROY,
     });
 
     // Workaround for bug where TargetGroupName is not set but required
