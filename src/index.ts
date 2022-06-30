@@ -3,7 +3,7 @@ import * as path from 'path';
 import * as apigateway from '@aws-cdk/aws-apigatewayv2-alpha';
 import { HttpLambdaIntegration } from '@aws-cdk/aws-apigatewayv2-integrations-alpha';
 import {
-  Stack, CfnOutput, Duration, RemovalPolicy,
+  Stack, CfnOutput, Duration,
   aws_ec2 as ec2,
   aws_iam as iam,
   aws_lambda as lambda,
