@@ -232,7 +232,6 @@ export class DatabaseCluster extends Construct {
       vpc: props.vpc,
       allowAllOutbound: false,
     });
-    dbConnectionGroup.connections.allowInternally(ec2.Port.tcp(3306));
 
     const dbCluster = new rds.DatabaseCluster(this, 'DBCluster', {
       engine: rds.DatabaseClusterEngine.auroraMysql({
