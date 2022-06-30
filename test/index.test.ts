@@ -5,7 +5,7 @@ import {
   aws_rds as rds,
 } from 'aws-cdk-lib';
 import { Template } from 'aws-cdk-lib/assertions';
-import { ServerlessApi, DatabaseCluster } from '../src';
+import { ServerlessApi, DatabaseCluster, ServerlessConsole } from '../src';
 
 test('create the ServerlessAPI', () => {
   const mockApp = new App();
@@ -73,6 +73,21 @@ test('do not create rdsProxy if props.rdsProxy is false', () => {
       },
     },
     rdsProxy: false,
+  });
+  Template.fromStack(stack).resourceCountIs('AWS::RDS::DBProxy', 0);
+});
+
+test('create console function', () => {
+  const mockApp = new App();
+  const stack = new Stack(mockApp, 'testing-stack');
+  const vpc = new ec2.Vpc(stack, 'Vpc');
+
+  new ServerlessConsole(stack, 'DBCluster', {
+    vpc,
+    phpLayerVersion: 'arn:aws:lambda:us-east-1:209497400698:layer:php-74:50',
+    consoleLayerVersion: 'arn:aws:lambda:us-east-1:209497400698:layer:console:64',
+    lambdaCodePath: path.join(__dirname, '../codebase'),
+    handler: 'bin/console',
   });
   Template.fromStack(stack).resourceCountIs('AWS::RDS::DBProxy', 0);
 });
