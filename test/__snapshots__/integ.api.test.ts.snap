@@ -196,39 +196,11 @@ Object {
     "DatabaseClusterDBSecurityGroupBD6DA182": Object {
       "Properties": Object {
         "GroupDescription": "testing-stack/DatabaseCluster/DB Security Group",
-        "SecurityGroupEgress": Array [
-          Object {
-            "CidrIp": "0.0.0.0/0",
-            "Description": "Allow all outbound traffic by default",
-            "IpProtocol": "-1",
-          },
-        ],
         "VpcId": Object {
           "Ref": "Vpc8378EB38",
         },
       },
       "Type": "AWS::EC2::SecurityGroup",
-    },
-    "DatabaseClusterDBSecurityGroupfromtestingstackDatabaseClusterDBSecurityGroup20270AE03306339DF87C": Object {
-      "Properties": Object {
-        "Description": "from testingstackDatabaseClusterDBSecurityGroup20270AE0:3306",
-        "FromPort": 3306,
-        "GroupId": Object {
-          "Fn::GetAtt": Array [
-            "DatabaseClusterDBSecurityGroupBD6DA182",
-            "GroupId",
-          ],
-        },
-        "IpProtocol": "tcp",
-        "SourceSecurityGroupId": Object {
-          "Fn::GetAtt": Array [
-            "DatabaseClusterDBSecurityGroupBD6DA182",
-            "GroupId",
-          ],
-        },
-        "ToPort": 3306,
-      },
-      "Type": "AWS::EC2::SecurityGroupIngress",
     },
     "DatabaseClusterDBSecurityGroupfromtestingstackDatabaseClusterDBSecurityGroup20270AE0IndirectPort93E113CA": Object {
       "Properties": Object {
@@ -260,6 +232,37 @@ Object {
         },
       },
       "Type": "AWS::EC2::SecurityGroupIngress",
+    },
+    "DatabaseClusterDBSecurityGrouptotestingstackDatabaseClusterDBSecurityGroup20270AE0IndirectPortD5FBD996": Object {
+      "Properties": Object {
+        "Description": "Allow connections to the database Cluster from the Proxy",
+        "DestinationSecurityGroupId": Object {
+          "Fn::GetAtt": Array [
+            "DatabaseClusterDBSecurityGroupBD6DA182",
+            "GroupId",
+          ],
+        },
+        "FromPort": Object {
+          "Fn::GetAtt": Array [
+            "DatabaseClusterDBCluster27F7FF5A",
+            "Endpoint.Port",
+          ],
+        },
+        "GroupId": Object {
+          "Fn::GetAtt": Array [
+            "DatabaseClusterDBSecurityGroupBD6DA182",
+            "GroupId",
+          ],
+        },
+        "IpProtocol": "tcp",
+        "ToPort": Object {
+          "Fn::GetAtt": Array [
+            "DatabaseClusterDBCluster27F7FF5A",
+            "Endpoint.Port",
+          ],
+        },
+      },
+      "Type": "AWS::EC2::SecurityGroupEgress",
     },
     "DatabaseClusterDbMasterSecret98DF2329": Object {
       "DeletionPolicy": "Delete",
