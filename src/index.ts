@@ -77,6 +77,10 @@ export interface ServerlessApiProps {
    */
   readonly rdsProxy?: rds.IDatabaseProxy;
 
+  /**
+   * Additional app environment variables
+   */
+  readonly environment?: {[key:string]: string};
 }
 
 /**
@@ -107,6 +111,7 @@ export class ServerlessApi extends Construct {
         DB_WRITER: props.databaseConfig?.writerEndpoint ?? '',
         DB_READER: props.databaseConfig?.readerEndpoint ?? props.databaseConfig?.writerEndpoint ?? '',
         DB_USER: props.databaseConfig?.masterUserName ?? DEFAULT_DB_MASTER_USER,
+        ...props.environment,
       },
       timeout: Duration.seconds(120),
       vpc: props.vpc,
