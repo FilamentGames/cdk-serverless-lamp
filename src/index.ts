@@ -77,6 +77,12 @@ export interface ServerlessApiProps {
    */
   readonly rdsProxy?: rds.IDatabaseProxy;
 
+  /**
+   * Whether to disable the default execute api endpoint.
+   * You can enable this when you have a custom domain mapped.
+   * @default - false
+   */
+  readonly disableExecuteApiEndpoint?: boolean;
 }
 
 /**
@@ -121,6 +127,7 @@ export class ServerlessApi extends Construct {
 
     const endpoint = new apigateway.HttpApi(this, 'apiservice', {
       defaultIntegration: new HttpLambdaIntegration('lambdaHandler', this.handler),
+      disableExecuteApiEndpoint: props.disableExecuteApiEndpoint,
     });
     new CfnOutput(this, 'EndpointURL', { value: endpoint.url! });
   }
