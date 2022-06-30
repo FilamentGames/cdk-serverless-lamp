@@ -3,7 +3,7 @@ import {
   App, Stack, CfnOutput,
   aws_ec2 as ec2,
 } from 'aws-cdk-lib';
-import { ServerlessLaravel, DatabaseCluster } from './index';
+import { ServerlessLaravel, DatabaseCluster, ServerlessLaravelConsole } from './index';
 
 export class IntegTesting {
   readonly stack: Stack[];
@@ -30,7 +30,18 @@ export class IntegTesting {
     // the ServerlessLaravel
     new ServerlessLaravel(stack, 'ServerlessLaravel', {
       brefLayerVersion: 'arn:aws:lambda:ap-northeast-1:209497400698:layer:php-74-fpm:11',
-      laravelPath: path.join(__dirname, '../codebase'),
+      lambdaCodePath: path.join(__dirname, '../codebase'),
+      vpc,
+      databaseConfig: {
+        writerEndpoint: db.rdsProxy!.endpoint,
+      },
+    });
+
+    // the ServerlessLaravelConsole
+    new ServerlessLaravelConsole(stack, 'ServerlessLaravelConsole', {
+      phpLayerVersion: 'arn:aws:lambda:us-east-1:209497400698:layer:php-74:50',
+      consoleLayerVersion: 'arn:aws:lambda:us-east-1:209497400698:layer:console:64',
+      lambdaCodePath: path.join(__dirname, '../codebase'),
       vpc,
       databaseConfig: {
         writerEndpoint: db.rdsProxy!.endpoint,

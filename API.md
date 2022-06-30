@@ -6,7 +6,9 @@ Name|Description
 ----|-----------
 [DatabaseCluster](#cdk-serverless-lamp-databasecluster)|*No description*
 [ServerlessApi](#cdk-serverless-lamp-serverlessapi)|Use `ServerlessApi` to create the serverless API resource.
+[ServerlessConsole](#cdk-serverless-lamp-serverlessconsole)|Use `ServerlessConsole` to create the serverless console resource.
 [ServerlessLaravel](#cdk-serverless-lamp-serverlesslaravel)|Use `ServerlessLaravel` to create the serverless Laravel resource.
+[ServerlessLaravelConsole](#cdk-serverless-lamp-serverlesslaravelconsole)|*No description*
 
 
 **Structs**
@@ -16,6 +18,8 @@ Name|Description
 [DatabaseConfig](#cdk-serverless-lamp-databaseconfig)|*No description*
 [DatabaseProps](#cdk-serverless-lamp-databaseprops)|*No description*
 [ServerlessApiProps](#cdk-serverless-lamp-serverlessapiprops)|Construct properties for `ServerlessApi`.
+[ServerlessConsoleProps](#cdk-serverless-lamp-serverlessconsoleprops)|Construct properties for `ServerlessApi`.
+[ServerlessLaravelConsoleProps](#cdk-serverless-lamp-serverlesslaravelconsoleprops)|Construct properties for `ServerlessLaravel`.
 [ServerlessLaravelProps](#cdk-serverless-lamp-serverlesslaravelprops)|Construct properties for `ServerlessLaravel`.
 
 
@@ -98,12 +102,52 @@ Name | Type | Description
 
 
 
+## class ServerlessConsole  <a id="cdk-serverless-lamp-serverlessconsole"></a>
+
+Use `ServerlessConsole` to create the serverless console resource.
+
+__Implements__: [IConstruct](#constructs-iconstruct), [IDependable](#constructs-idependable)
+__Extends__: [Construct](#constructs-construct)
+
+### Initializer
+
+
+
+
+```ts
+new ServerlessConsole(scope: Construct, id: string, props: ServerlessConsoleProps)
+```
+
+* **scope** (<code>[Construct](#constructs-construct)</code>)  *No description*
+* **id** (<code>string</code>)  *No description*
+* **props** (<code>[ServerlessConsoleProps](#cdk-serverless-lamp-serverlessconsoleprops)</code>)  *No description*
+  * **consoleLayerVersion** (<code>string</code>)  The arn of the console layer to use. 
+  * **handler** (<code>string</code>)  path to console binary relative to lambdaCodePath. 
+  * **phpLayerVersion** (<code>string</code>)  The arn of the php layer to use. 
+  * **databaseConfig** (<code>[DatabaseConfig](#cdk-serverless-lamp-databaseconfig)</code>)  Database configurations. __*Optional*__
+  * **environment** (<code>Map<string, string></code>)  Additional lambda environment variables. __*Optional*__
+  * **lambdaCodePath** (<code>string</code>)  custom lambda code asset path. __*Default*__: DEFAULT_LAMBDA_ASSET_PATH
+  * **rdsProxy** (<code>[aws_rds.IDatabaseProxy](#aws-cdk-lib-aws-rds-idatabaseproxy)</code>)  RDS Proxy for the Lambda function. __*Default*__: no db proxy
+  * **vpc** (<code>[aws_ec2.IVpc](#aws-cdk-lib-aws-ec2-ivpc)</code>)  The VPC for this stack. __*Optional*__
+
+
+
+### Properties
+
+
+Name | Type | Description 
+-----|------|-------------
+**handler** | <code>[aws_lambda.IFunction](#aws-cdk-lib-aws-lambda-ifunction)</code> | <span></span>
+**vpc**? | <code>[aws_ec2.IVpc](#aws-cdk-lib-aws-ec2-ivpc)</code> | __*Optional*__
+
+
+
 ## class ServerlessLaravel  <a id="cdk-serverless-lamp-serverlesslaravel"></a>
 
 Use `ServerlessLaravel` to create the serverless Laravel resource.
 
 __Implements__: [IConstruct](#constructs-iconstruct), [IDependable](#constructs-idependable)
-__Extends__: [Construct](#constructs-construct)
+__Extends__: [ServerlessApi](#cdk-serverless-lamp-serverlessapi)
 
 ### Initializer
 
@@ -123,7 +167,37 @@ new ServerlessLaravel(scope: Construct, id: string, props: ServerlessLaravelProp
   * **lambdaCodePath** (<code>string</code>)  custom lambda code asset path. __*Default*__: DEFAULT_LAMBDA_ASSET_PATH
   * **rdsProxy** (<code>[aws_rds.IDatabaseProxy](#aws-cdk-lib-aws-rds-idatabaseproxy)</code>)  RDS Proxy for the Lambda function. __*Default*__: no db proxy
   * **vpc** (<code>[aws_ec2.IVpc](#aws-cdk-lib-aws-ec2-ivpc)</code>)  The VPC for this stack. __*Optional*__
-  * **laravelPath** (<code>string</code>)  path to your local laravel directory with bref. 
+
+
+
+
+## class ServerlessLaravelConsole  <a id="cdk-serverless-lamp-serverlesslaravelconsole"></a>
+
+
+
+__Implements__: [IConstruct](#constructs-iconstruct), [IDependable](#constructs-idependable)
+__Extends__: [Construct](#constructs-construct)
+
+### Initializer
+
+
+
+
+```ts
+new ServerlessLaravelConsole(scope: Construct, id: string, props: ServerlessLaravelConsoleProps)
+```
+
+* **scope** (<code>[Construct](#constructs-construct)</code>)  *No description*
+* **id** (<code>string</code>)  *No description*
+* **props** (<code>[ServerlessLaravelConsoleProps](#cdk-serverless-lamp-serverlesslaravelconsoleprops)</code>)  *No description*
+  * **consoleLayerVersion** (<code>string</code>)  The arn of the console layer to use. 
+  * **phpLayerVersion** (<code>string</code>)  The arn of the php layer to use. 
+  * **databaseConfig** (<code>[DatabaseConfig](#cdk-serverless-lamp-databaseconfig)</code>)  Database configurations. __*Optional*__
+  * **environment** (<code>Map<string, string></code>)  Additional lambda environment variables. __*Optional*__
+  * **handler** (<code>string</code>)  path to console binary relative to lambdaCodePath. __*Default*__: artisan
+  * **lambdaCodePath** (<code>string</code>)  custom lambda code asset path. __*Default*__: DEFAULT_LAMBDA_ASSET_PATH
+  * **rdsProxy** (<code>[aws_rds.IDatabaseProxy](#aws-cdk-lib-aws-rds-idatabaseproxy)</code>)  RDS Proxy for the Lambda function. __*Default*__: no db proxy
+  * **vpc** (<code>[aws_ec2.IVpc](#aws-cdk-lib-aws-ec2-ivpc)</code>)  The VPC for this stack. __*Optional*__
 
 
 
@@ -181,6 +255,46 @@ Name | Type | Description
 
 
 
+## struct ServerlessConsoleProps  <a id="cdk-serverless-lamp-serverlessconsoleprops"></a>
+
+
+Construct properties for `ServerlessApi`.
+
+
+
+Name | Type | Description 
+-----|------|-------------
+**consoleLayerVersion** | <code>string</code> | The arn of the console layer to use.
+**handler** | <code>string</code> | path to console binary relative to lambdaCodePath.
+**phpLayerVersion** | <code>string</code> | The arn of the php layer to use.
+**databaseConfig**? | <code>[DatabaseConfig](#cdk-serverless-lamp-databaseconfig)</code> | Database configurations.<br/>__*Optional*__
+**environment**? | <code>Map<string, string></code> | Additional lambda environment variables.<br/>__*Optional*__
+**lambdaCodePath**? | <code>string</code> | custom lambda code asset path.<br/>__*Default*__: DEFAULT_LAMBDA_ASSET_PATH
+**rdsProxy**? | <code>[aws_rds.IDatabaseProxy](#aws-cdk-lib-aws-rds-idatabaseproxy)</code> | RDS Proxy for the Lambda function.<br/>__*Default*__: no db proxy
+**vpc**? | <code>[aws_ec2.IVpc](#aws-cdk-lib-aws-ec2-ivpc)</code> | The VPC for this stack.<br/>__*Optional*__
+
+
+
+## struct ServerlessLaravelConsoleProps  <a id="cdk-serverless-lamp-serverlesslaravelconsoleprops"></a>
+
+
+Construct properties for `ServerlessLaravel`.
+
+
+
+Name | Type | Description 
+-----|------|-------------
+**consoleLayerVersion** | <code>string</code> | The arn of the console layer to use.
+**phpLayerVersion** | <code>string</code> | The arn of the php layer to use.
+**databaseConfig**? | <code>[DatabaseConfig](#cdk-serverless-lamp-databaseconfig)</code> | Database configurations.<br/>__*Optional*__
+**environment**? | <code>Map<string, string></code> | Additional lambda environment variables.<br/>__*Optional*__
+**handler**? | <code>string</code> | path to console binary relative to lambdaCodePath.<br/>__*Default*__: artisan
+**lambdaCodePath**? | <code>string</code> | custom lambda code asset path.<br/>__*Default*__: DEFAULT_LAMBDA_ASSET_PATH
+**rdsProxy**? | <code>[aws_rds.IDatabaseProxy](#aws-cdk-lib-aws-rds-idatabaseproxy)</code> | RDS Proxy for the Lambda function.<br/>__*Default*__: no db proxy
+**vpc**? | <code>[aws_ec2.IVpc](#aws-cdk-lib-aws-ec2-ivpc)</code> | The VPC for this stack.<br/>__*Optional*__
+
+
+
 ## struct ServerlessLaravelProps  <a id="cdk-serverless-lamp-serverlesslaravelprops"></a>
 
 
@@ -191,7 +305,6 @@ Construct properties for `ServerlessLaravel`.
 Name | Type | Description 
 -----|------|-------------
 **brefLayerVersion** | <code>string</code> | AWS Lambda layer version from the Bref runtime.
-**laravelPath** | <code>string</code> | path to your local laravel directory with bref.
 **databaseConfig**? | <code>[DatabaseConfig](#cdk-serverless-lamp-databaseconfig)</code> | Database configurations.<br/>__*Optional*__
 **handler**? | <code>[aws_lambda.IFunction](#aws-cdk-lib-aws-lambda-ifunction)</code> | custom lambda function for the API.<br/>__*Default*__: A Lambda function with Lavavel and Bref support will be created
 **lambdaCodePath**? | <code>string</code> | custom lambda code asset path.<br/>__*Default*__: DEFAULT_LAMBDA_ASSET_PATH
