@@ -204,7 +204,6 @@ export class DatabaseCluster extends Construct {
       vpc: props.databaseOptions.instanceProps.vpc,
       allowAllOutbound: false,
     });
-    dbConnectionGroup.connections.allowInternally(ec2.Port.tcp(3306));
 
     const dbCluster = new rds.DatabaseCluster(this, 'DBCluster', {
       ...props.databaseOptions,
