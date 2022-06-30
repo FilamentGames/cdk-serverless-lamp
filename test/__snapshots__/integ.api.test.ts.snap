@@ -331,9 +331,9 @@ Object {
       },
       "Type": "AWS::IAM::Policy",
     },
-    "ServerlessLaravelConsolehandlerF519DBBE": Object {
+    "ServerlessLaravelConsolehandler5578A088": Object {
       "DependsOn": Array [
-        "ServerlessLaravelConsolehandlerServiceRoleADE744B8",
+        "ServerlessLaravelConsolehandlerServiceRoleBA8BF591",
       ],
       "Properties": Object {
         "Code": Object {
@@ -367,7 +367,7 @@ Object {
         ],
         "Role": Object {
           "Fn::GetAtt": Array [
-            "ServerlessLaravelConsolehandlerServiceRoleADE744B8",
+            "ServerlessLaravelConsolehandlerServiceRoleBA8BF591",
             "Arn",
           ],
         },
@@ -377,7 +377,7 @@ Object {
           "SecurityGroupIds": Array [
             Object {
               "Fn::GetAtt": Array [
-                "ServerlessLaravelConsolehandlerSecurityGroup9F4EB85B",
+                "ServerlessLaravelConsolehandlerSecurityGroupBE798D07",
                 "GroupId",
               ],
             },
@@ -394,9 +394,9 @@ Object {
       },
       "Type": "AWS::Lambda::Function",
     },
-    "ServerlessLaravelConsolehandlerSecurityGroup9F4EB85B": Object {
+    "ServerlessLaravelConsolehandlerSecurityGroupBE798D07": Object {
       "Properties": Object {
-        "GroupDescription": "Automatic security group for Lambda Function testingstackServerlessLaravelConsolehandler5B7924C3",
+        "GroupDescription": "Automatic security group for Lambda Function testingstackServerlessLaravelConsolehandler4E5B47C9",
         "SecurityGroupEgress": Array [
           Object {
             "CidrIp": "0.0.0.0/0",
@@ -410,7 +410,7 @@ Object {
       },
       "Type": "AWS::EC2::SecurityGroup",
     },
-    "ServerlessLaravelConsolehandlerServiceRoleADE744B8": Object {
+    "ServerlessLaravelConsolehandlerServiceRoleBA8BF591": Object {
       "Properties": Object {
         "AssumeRolePolicyDocument": Object {
           "Statement": Array [

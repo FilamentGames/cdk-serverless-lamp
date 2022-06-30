@@ -420,10 +420,9 @@ export interface ServerlessLaravelConsoleProps {
   readonly environment?: { [key: string] : string };
 }
 
-export class ServerlessLaravelConsole extends Construct {
+export class ServerlessLaravelConsole extends ServerlessConsole {
   constructor(scope: Construct, id: string, props: ServerlessLaravelConsoleProps) {
-    super(scope, id);
-    new ServerlessConsole(this, id, {
+    super(scope, id, {
       ...props,
       handler: props.handler ?? 'artisan',
     });
