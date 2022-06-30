@@ -111,7 +111,7 @@ export interface DatabaseProps {
      */
     readonly rdsProxy?: boolean;
     /**
-     * RDS Proxy Options
+     * Additional RDS Proxy Options
      */
     readonly rdsProxyOptions?: rds.DatabaseProxyOptions;
     /**
@@ -124,6 +124,10 @@ export interface DatabaseProps {
      * List of subnets to use when creating subnet group.
      */
     readonly vpcSubnets?: ec2.SubnetSelection;
+    /**
+     * Define additional cluster options
+     */
+    readonly extraDatabaseOptions?: rds.DatabaseClusterProps;
 }
 export declare class DatabaseCluster extends Construct {
     readonly rdsProxy?: rds.DatabaseProxy;
