@@ -176,7 +176,7 @@ new ServerlessLaravel(scope: Construct, id: string, props: ServerlessLaravelProp
 
 
 __Implements__: [IConstruct](#constructs-iconstruct), [IDependable](#constructs-idependable)
-__Extends__: [Construct](#constructs-construct)
+__Extends__: [ServerlessConsole](#cdk-serverless-lamp-serverlessconsole)
 
 ### Initializer
 
