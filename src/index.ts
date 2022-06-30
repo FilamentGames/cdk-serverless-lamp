@@ -202,6 +202,7 @@ export class DatabaseCluster extends Construct {
 
     const dbConnectionGroup = new ec2.SecurityGroup(this, 'DB Security Group', {
       vpc: props.databaseOptions.instanceProps.vpc,
+      allowAllOutbound: false,
     });
     dbConnectionGroup.connections.allowInternally(ec2.Port.tcp(3306));
 
