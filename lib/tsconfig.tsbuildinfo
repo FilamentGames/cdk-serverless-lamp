@@ -6126,7 +6126,7 @@
         "affectsGlobalScope": false
       },
       "../src/index.ts": {
-        "version": "711df0af177f560f9dddb286e8de24c39c3fb3ed771014cc5915b54b2ca42fd9",
+        "version": "8e70245c3abee870990b1c9359577dbd40a9e7e58c15b21ec73c5f249255f424",
         "affectsGlobalScope": false
       },
       "../src/integ.default.ts": {
@@ -14464,6 +14464,8 @@
         "../node_modules/@aws-cdk/aws-apigatewayv2-alpha/lib/index.d.ts",
         "../node_modules/@aws-cdk/aws-apigatewayv2-integrations-alpha/lib/index.d.ts",
         "../node_modules/@types/node/path.d.ts",
+        "../node_modules/aws-cdk-lib/aws-ec2/index.d.ts",
+        "../node_modules/aws-cdk-lib/aws-rds/index.d.ts",
         "../node_modules/aws-cdk-lib/index.d.ts",
         "../node_modules/constructs/lib/index.d.ts"
       ],

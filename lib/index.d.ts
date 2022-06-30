@@ -1,5 +1,7 @@
 import * as apigateway from '@aws-cdk/aws-apigatewayv2-alpha';
 import { aws_ec2 as ec2, aws_lambda as lambda, aws_rds as rds, aws_secretsmanager as secretsmanager } from 'aws-cdk-lib';
+import { ISecurityGroup } from 'aws-cdk-lib/aws-ec2';
+import { IDatabaseCluster } from 'aws-cdk-lib/aws-rds';
 import { Construct } from 'constructs';
 export interface DatabaseConfig {
     /**
@@ -108,6 +110,8 @@ export declare class DatabaseCluster extends Construct {
     readonly rdsProxy?: rds.DatabaseProxy;
     readonly masterUser: string;
     readonly masterPassword: secretsmanager.ISecret;
+    readonly dbConnectionGroup: ISecurityGroup;
+    readonly dbCluster: IDatabaseCluster;
     constructor(scope: Construct, id: string, props: DatabaseProps);
 }
 /**
