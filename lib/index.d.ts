@@ -83,27 +83,11 @@ export declare class ServerlessLaravel extends Construct {
 }
 export interface DatabaseProps {
     /**
-     * database cluster engine
-     *
-     * @default AURORA_MYSQL
-     */
-    readonly engine?: rds.IClusterEngine;
-    /**
      * master username
      *
      * @default admin
      */
     readonly masterUserName?: string;
-    /**
-     * The VPC for the DatabaseCluster
-     */
-    readonly vpc: ec2.IVpc;
-    /**
-     * instance type of the cluster
-     *
-     * @default - t3.medium (or, more precisely, db.t3.medium)
-     */
-    readonly instanceType?: ec2.InstanceType;
     /**
      * enable the Amazon RDS proxy
      *
@@ -115,19 +99,9 @@ export interface DatabaseProps {
      */
     readonly rdsProxyOptions?: rds.DatabaseProxyOptions;
     /**
-     * How many replicas/instances to create. Has to be at least 1.
-     *
-     * @default 1
+     * Define cluster options
      */
-    readonly instanceCapacity?: number;
-    /**
-     * List of subnets to use when creating subnet group.
-     */
-    readonly vpcSubnets?: ec2.SubnetSelection;
-    /**
-     * Define additional cluster options
-     */
-    readonly extraDatabaseOptions?: rds.DatabaseClusterProps;
+    readonly databaseOptions: rds.DatabaseClusterProps;
 }
 export declare class DatabaseCluster extends Construct {
     readonly rdsProxy?: rds.DatabaseProxy;

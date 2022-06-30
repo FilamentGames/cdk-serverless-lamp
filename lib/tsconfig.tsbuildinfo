@@ -6126,11 +6126,11 @@
         "affectsGlobalScope": false
       },
       "../src/index.ts": {
-        "version": "fbbe7c20789900fab35f311db15c37cd514c00e58a30e7b7047254e54a382ffa",
+        "version": "9549b72aa3178c3c8c29988876cf844dada469a5d36230e4a73605426fd817c8",
         "affectsGlobalScope": false
       },
       "../src/integ.default.ts": {
-        "version": "800b399c6707fd41ce01c0e6ab713e3bde8a370a21920a605935c9b4f9e29496",
+        "version": "49c27aba8e69981f6af7c9b3713e681fd8e25216bbb3ee282ffe21d12c7ba7f9",
         "affectsGlobalScope": false
       },
       "../node_modules/typescript-3.9/lib/lib.es2020.d.ts": {
