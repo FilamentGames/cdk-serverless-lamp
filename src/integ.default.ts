@@ -2,6 +2,7 @@ import * as path from 'path';
 import {
   App, Stack, CfnOutput,
   aws_ec2 as ec2,
+  aws_rds as rds,
 } from 'aws-cdk-lib';
 import { ServerlessLaravel, DatabaseCluster } from './index';
 
@@ -21,10 +22,17 @@ export class IntegTesting {
 
     // the DatabaseCluster sharing the same vpc with the ServerlessLaravel
     const db = new DatabaseCluster(stack, 'DatabaseCluster', {
-      vpc,
-      instanceType: new ec2.InstanceType('t3.small'),
+      databaseOptions: {
+        engine: rds.DatabaseClusterEngine.auroraMysql({
+          version: rds.AuroraMysqlEngineVersion.VER_2_08_1,
+        }),
+        instanceProps: {
+          vpc,
+          instanceType: new ec2.InstanceType('t3.small'),
+        },
+        instances: 1,
+      },
       rdsProxy: true,
-      instanceCapacity: 1,
     });
 
     // the ServerlessLaravel
