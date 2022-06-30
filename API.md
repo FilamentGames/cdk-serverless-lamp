@@ -81,6 +81,7 @@ new ServerlessApi(scope: Construct, id: string, props: ServerlessApiProps)
 * **props** (<code>[ServerlessApiProps](#cdk-serverless-lamp-serverlessapiprops)</code>)  *No description*
   * **brefLayerVersion** (<code>string</code>)  AWS Lambda layer version from the Bref runtime. 
   * **databaseConfig** (<code>[DatabaseConfig](#cdk-serverless-lamp-databaseconfig)</code>)  Database configurations. __*Optional*__
+  * **environment** (<code>Map<string, string></code>)  Additional app environment variables. __*Optional*__
   * **handler** (<code>[aws_lambda.IFunction](#aws-cdk-lib-aws-lambda-ifunction)</code>)  custom lambda function for the API. __*Default*__: A Lambda function with Lavavel and Bref support will be created
   * **lambdaCodePath** (<code>string</code>)  custom lambda code asset path. __*Default*__: DEFAULT_LAMBDA_ASSET_PATH
   * **rdsProxy** (<code>[aws_rds.IDatabaseProxy](#aws-cdk-lib-aws-rds-idatabaseproxy)</code>)  RDS Proxy for the Lambda function. __*Default*__: no db proxy
@@ -119,6 +120,7 @@ new ServerlessLaravel(scope: Construct, id: string, props: ServerlessLaravelProp
 * **props** (<code>[ServerlessLaravelProps](#cdk-serverless-lamp-serverlesslaravelprops)</code>)  *No description*
   * **brefLayerVersion** (<code>string</code>)  AWS Lambda layer version from the Bref runtime. 
   * **databaseConfig** (<code>[DatabaseConfig](#cdk-serverless-lamp-databaseconfig)</code>)  Database configurations. __*Optional*__
+  * **environment** (<code>Map<string, string></code>)  Additional app environment variables. __*Optional*__
   * **handler** (<code>[aws_lambda.IFunction](#aws-cdk-lib-aws-lambda-ifunction)</code>)  custom lambda function for the API. __*Default*__: A Lambda function with Lavavel and Bref support will be created
   * **lambdaCodePath** (<code>string</code>)  custom lambda code asset path. __*Default*__: DEFAULT_LAMBDA_ASSET_PATH
   * **rdsProxy** (<code>[aws_rds.IDatabaseProxy](#aws-cdk-lib-aws-rds-idatabaseproxy)</code>)  RDS Proxy for the Lambda function. __*Default*__: no db proxy
@@ -174,6 +176,7 @@ Name | Type | Description
 -----|------|-------------
 **brefLayerVersion** | <code>string</code> | AWS Lambda layer version from the Bref runtime.
 **databaseConfig**? | <code>[DatabaseConfig](#cdk-serverless-lamp-databaseconfig)</code> | Database configurations.<br/>__*Optional*__
+**environment**? | <code>Map<string, string></code> | Additional app environment variables.<br/>__*Optional*__
 **handler**? | <code>[aws_lambda.IFunction](#aws-cdk-lib-aws-lambda-ifunction)</code> | custom lambda function for the API.<br/>__*Default*__: A Lambda function with Lavavel and Bref support will be created
 **lambdaCodePath**? | <code>string</code> | custom lambda code asset path.<br/>__*Default*__: DEFAULT_LAMBDA_ASSET_PATH
 **rdsProxy**? | <code>[aws_rds.IDatabaseProxy](#aws-cdk-lib-aws-rds-idatabaseproxy)</code> | RDS Proxy for the Lambda function.<br/>__*Default*__: no db proxy
@@ -193,6 +196,7 @@ Name | Type | Description
 **brefLayerVersion** | <code>string</code> | AWS Lambda layer version from the Bref runtime.
 **laravelPath** | <code>string</code> | path to your local laravel directory with bref.
 **databaseConfig**? | <code>[DatabaseConfig](#cdk-serverless-lamp-databaseconfig)</code> | Database configurations.<br/>__*Optional*__
+**environment**? | <code>Map<string, string></code> | Additional app environment variables.<br/>__*Optional*__
 **handler**? | <code>[aws_lambda.IFunction](#aws-cdk-lib-aws-lambda-ifunction)</code> | custom lambda function for the API.<br/>__*Default*__: A Lambda function with Lavavel and Bref support will be created
 **lambdaCodePath**? | <code>string</code> | custom lambda code asset path.<br/>__*Default*__: DEFAULT_LAMBDA_ASSET_PATH
 **rdsProxy**? | <code>[aws_rds.IDatabaseProxy](#aws-cdk-lib-aws-rds-idatabaseproxy)</code> | RDS Proxy for the Lambda function.<br/>__*Default*__: no db proxy
