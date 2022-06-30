@@ -205,6 +205,6 @@ export interface ServerlessLaravelConsoleProps {
         [key: string]: string;
     };
 }
-export declare class ServerlessLaravelConsole extends Construct {
+export declare class ServerlessLaravelConsole extends ServerlessConsole {
     constructor(scope: Construct, id: string, props: ServerlessLaravelConsoleProps);
 }
