@@ -159,30 +159,11 @@ export class ServerlessLaravel extends Construct {
 
 export interface DatabaseProps {
   /**
-   * database cluster engine
-   *
-   * @default AURORA_MYSQL
-   */
-  readonly engine?: rds.IClusterEngine;
-
-  /**
    * master username
    *
    * @default admin
    */
   readonly masterUserName?: string;
-
-  /**
-   * The VPC for the DatabaseCluster
-   */
-  readonly vpc: ec2.IVpc;
-
-  /**
-   * instance type of the cluster
-   *
-   * @default - t3.medium (or, more precisely, db.t3.medium)
-   */
-  readonly instanceType?: ec2.InstanceType;
 
   /**
    * enable the Amazon RDS proxy
@@ -197,21 +178,9 @@ export interface DatabaseProps {
   readonly rdsProxyOptions?: rds.DatabaseProxyOptions;
 
   /**
-   * How many replicas/instances to create. Has to be at least 1.
-   *
-   * @default 1
+   * Define cluster options
    */
-  readonly instanceCapacity?: number;
-
-  /**
-   * List of subnets to use when creating subnet group.
-   */
-  readonly vpcSubnets?: ec2.SubnetSelection;
-
-  /**
-   * Define additional cluster options
-   */
-  readonly extraDatabaseOptions?: rds.DatabaseClusterProps;
+  readonly databaseOptions: rds.DatabaseClusterProps;
 }
 
 export class DatabaseCluster extends Construct {
@@ -241,23 +210,17 @@ export class DatabaseCluster extends Construct {
     this.masterPassword = masterUserSecret;
 
     const dbConnectionGroup = new ec2.SecurityGroup(this, 'DB Security Group', {
-      vpc: props.vpc,
+      vpc: props.databaseOptions.instanceProps.vpc,
     });
     dbConnectionGroup.connections.allowInternally(ec2.Port.tcp(3306));
 
     const dbCluster = new rds.DatabaseCluster(this, 'DBCluster', {
-      ...props.extraDatabaseOptions,
-      engine: props.engine ?? rds.DatabaseClusterEngine.auroraMysql({
-        version: rds.AuroraMysqlEngineVersion.VER_2_08_1,
-      }),
+      ...props.databaseOptions,
       instanceProps: {
-        vpc: props.vpc,
-        instanceType: props.instanceType ?? new ec2.InstanceType('t3.medium'),
+        ...props.databaseOptions.instanceProps,
         securityGroups: [dbConnectionGroup],
-        vpcSubnets: props.vpcSubnets,
       },
       credentials: rds.Credentials.fromSecret(masterUserSecret),
-      instances: props.instanceCapacity,
     });
 
     // Workaround for bug where TargetGroupName is not set but required
@@ -284,13 +247,12 @@ export class DatabaseCluster extends Construct {
 
       const proxyOptions: rds.DatabaseProxyOptions = {
         ...props.rdsProxyOptions,
-        vpc: props.vpc,
+        vpc: props.databaseOptions.instanceProps.vpc,
         secrets: [masterUserSecret],
         iamAuth: true,
         dbProxyName: `${Stack.of(this).stackName}-RDSProxy`,
         securityGroups: [dbConnectionGroup],
         role: rdsProxyRole,
-        vpcSubnets: props.vpcSubnets,
       };
 
       // create the RDS proxy

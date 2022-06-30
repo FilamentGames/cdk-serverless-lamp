@@ -2,6 +2,7 @@ import * as path from 'path';
 import {
   App, Stack,
   aws_ec2 as ec2,
+  aws_rds as rds,
 } from 'aws-cdk-lib';
 import { Template } from 'aws-cdk-lib/assertions';
 import { ServerlessApi, DatabaseCluster } from '../src';
@@ -26,7 +27,14 @@ test('create rdsProxy if props.rdsProxy is undefined', () => {
   const vpc = new ec2.Vpc(stack, 'Vpc');
 
   new DatabaseCluster(stack, 'DBCluster', {
-    vpc,
+    databaseOptions: {
+      engine: rds.DatabaseClusterEngine.auroraMysql({
+        version: rds.AuroraMysqlEngineVersion.VER_2_08_1,
+      }),
+      instanceProps: {
+        vpc,
+      },
+    },
   });
   Template.fromStack(stack).hasResource('AWS::RDS::DBProxy', {});
 });
@@ -37,7 +45,14 @@ test('create rdsProxy if props.rdsProxy is true', () => {
   const vpc = new ec2.Vpc(stack, 'Vpc');
 
   new DatabaseCluster(stack, 'DBCluster', {
-    vpc,
+    databaseOptions: {
+      engine: rds.DatabaseClusterEngine.auroraMysql({
+        version: rds.AuroraMysqlEngineVersion.VER_2_08_1,
+      }),
+      instanceProps: {
+        vpc,
+      },
+    },
     rdsProxy: true,
   });
   Template.fromStack(stack).hasResource('AWS::RDS::DBProxy', {});
@@ -49,7 +64,14 @@ test('do not create rdsProxy if props.rdsProxy is false', () => {
   const vpc = new ec2.Vpc(stack, 'Vpc');
 
   new DatabaseCluster(stack, 'DBCluster', {
-    vpc,
+    databaseOptions: {
+      engine: rds.DatabaseClusterEngine.auroraMysql({
+        version: rds.AuroraMysqlEngineVersion.VER_2_08_1,
+      }),
+      instanceProps: {
+        vpc,
+      },
+    },
     rdsProxy: false,
   });
   Template.fromStack(stack).resourceCountIs('AWS::RDS::DBProxy', 0);
