@@ -55,6 +55,12 @@ export interface ServerlessApiProps {
      * @default - no db proxy
      */
     readonly rdsProxy?: rds.IDatabaseProxy;
+    /**
+     * Additional app environment variables
+     */
+    readonly environment?: {
+        [key: string]: string;
+    };
 }
 /**
  * Use `ServerlessApi` to create the serverless API resource
