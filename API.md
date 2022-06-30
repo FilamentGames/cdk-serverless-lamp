@@ -55,6 +55,8 @@ new DatabaseCluster(scope: Construct, id: string, props: DatabaseProps)
 
 Name | Type | Description 
 -----|------|-------------
+**dbCluster** | <code>[aws_rds.IDatabaseCluster](#aws-cdk-lib-aws-rds-idatabasecluster)</code> | <span></span>
+**dbConnectionGroup** | <code>[aws_ec2.ISecurityGroup](#aws-cdk-lib-aws-ec2-isecuritygroup)</code> | <span></span>
 **masterPassword** | <code>[aws_secretsmanager.ISecret](#aws-cdk-lib-aws-secretsmanager-isecret)</code> | <span></span>
 **masterUser** | <code>string</code> | <span></span>
 **rdsProxy**? | <code>[aws_rds.DatabaseProxy](#aws-cdk-lib-aws-rds-databaseproxy)</code> | __*Optional*__
