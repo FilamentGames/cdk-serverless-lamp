@@ -250,7 +250,6 @@ export class DatabaseCluster extends Construct {
         ...props.rdsProxyOptions,
         vpc: props.databaseOptions.instanceProps.vpc,
         secrets: [masterUserSecret],
-        iamAuth: true,
         dbProxyName: `${Stack.of(this).stackName}-RDSProxy`,
         securityGroups: [dbConnectionGroup],
         role: rdsProxyRole,
