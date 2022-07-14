@@ -579,7 +579,7 @@ Object {
                 "Endpoint",
               ],
             },
-            "DB_USER": "admin",
+            "DB_USERNAME": "admin",
             "DB_WRITER": Object {
               "Fn::GetAtt": Array [
                 "DatabaseClusterDBClusterRDSProxyB1CC2CD9",
