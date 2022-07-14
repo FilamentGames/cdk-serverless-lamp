@@ -77,6 +77,10 @@ export interface ServerlessApiProps {
    */
   readonly rdsProxy?: rds.IDatabaseProxy;
 
+  /**
+   * Whether to activate x-ray tracing
+   */
+  readonly tracing?: lambda.Tracing;
 }
 
 /**
@@ -109,6 +113,7 @@ export class ServerlessApi extends Construct {
       },
       timeout: Duration.seconds(120),
       vpc: props.vpc,
+      tracing: props.tracing,
     });
 
     // allow lambda execution role to connect to RDS proxy
@@ -150,6 +155,7 @@ export class ServerlessLaravel extends Construct {
       vpc: props.vpc,
       databaseConfig: props.databaseConfig,
       rdsProxy: props.rdsProxy,
+      tracing: props.tracing,
     });
   }
 }

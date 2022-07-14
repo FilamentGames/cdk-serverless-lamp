@@ -3,6 +3,7 @@ import {
   App, Stack, CfnOutput,
   aws_ec2 as ec2,
 } from 'aws-cdk-lib';
+import { Tracing } from 'aws-cdk-lib/aws-lambda';
 import { ServerlessLaravel, DatabaseCluster } from './index';
 
 export class IntegTesting {
@@ -35,6 +36,7 @@ export class IntegTesting {
       databaseConfig: {
         writerEndpoint: db.rdsProxy!.endpoint,
       },
+      tracing: Tracing.ACTIVE,
     });
 
     new CfnOutput(stack, 'RDSProxyEndpoint', { value: db.rdsProxy!.endpoint });
