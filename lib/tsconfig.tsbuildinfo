@@ -6126,11 +6126,11 @@
         "affectsGlobalScope": false
       },
       "../src/index.ts": {
-        "version": "730c38f78cb1e28526e17fd4c053b2419dfce4bff931e8f5be5cb84c369949f9",
+        "version": "29ff012c34956502b2faa4db0e5c4f15780388060d38aa82c1206778b9b9952d",
         "affectsGlobalScope": false
       },
       "../src/integ.default.ts": {
-        "version": "cf1cfba08f5f85847e6d199cd2625d74ac046a1cdf8ee44bf9435d3e6cb65a34",
+        "version": "2af2fc9deb4822821cbeb97af217441b47012547862bf2c1621e227359d5b107",
         "affectsGlobalScope": false
       },
       "../node_modules/typescript-3.9/lib/lib.es2020.d.ts": {
@@ -14471,6 +14471,7 @@
       ],
       "../src/integ.default.ts": [
         "../node_modules/@types/node/path.d.ts",
+        "../node_modules/aws-cdk-lib/aws-lambda/index.d.ts",
         "../node_modules/aws-cdk-lib/index.d.ts",
         "../src/index.ts"
       ]

@@ -69,6 +69,7 @@ export interface ServerlessApiProps {
      * @default - false
      */
     readonly disableExecuteApiEndpoint?: boolean;
+    readonly tracing?: lambda.Tracing;
 }
 /**
  * Use `ServerlessApi` to create the serverless API resource
