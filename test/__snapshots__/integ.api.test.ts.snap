@@ -124,7 +124,7 @@ Object {
         "Auth": Array [
           Object {
             "AuthScheme": "SECRETS",
-            "IAMAuth": "REQUIRED",
+            "IAMAuth": "DISABLED",
             "SecretArn": Object {
               "Ref": "DatabaseClusterDbMasterSecret98DF2329",
             },
