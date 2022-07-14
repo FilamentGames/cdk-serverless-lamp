@@ -89,6 +89,7 @@ new ServerlessApi(scope: Construct, id: string, props: ServerlessApiProps)
   * **handler** (<code>[aws_lambda.IFunction](#aws-cdk-lib-aws-lambda-ifunction)</code>)  custom lambda function for the API. __*Default*__: A Lambda function with Lavavel and Bref support will be created
   * **lambdaCodePath** (<code>string</code>)  custom lambda code asset path. __*Default*__: DEFAULT_LAMBDA_ASSET_PATH
   * **rdsProxy** (<code>[aws_rds.IDatabaseProxy](#aws-cdk-lib-aws-rds-idatabaseproxy)</code>)  RDS Proxy for the Lambda function. __*Default*__: no db proxy
+  * **tracing** (<code>[aws_lambda.Tracing](#aws-cdk-lib-aws-lambda-tracing)</code>)  *No description* __*Optional*__
   * **vpc** (<code>[aws_ec2.IVpc](#aws-cdk-lib-aws-ec2-ivpc)</code>)  The VPC for this stack. __*Optional*__
 
 
@@ -170,6 +171,7 @@ new ServerlessLaravel(scope: Construct, id: string, props: ServerlessLaravelProp
   * **handler** (<code>[aws_lambda.IFunction](#aws-cdk-lib-aws-lambda-ifunction)</code>)  custom lambda function for the API. __*Default*__: A Lambda function with Lavavel and Bref support will be created
   * **lambdaCodePath** (<code>string</code>)  custom lambda code asset path. __*Default*__: DEFAULT_LAMBDA_ASSET_PATH
   * **rdsProxy** (<code>[aws_rds.IDatabaseProxy](#aws-cdk-lib-aws-rds-idatabaseproxy)</code>)  RDS Proxy for the Lambda function. __*Default*__: no db proxy
+  * **tracing** (<code>[aws_lambda.Tracing](#aws-cdk-lib-aws-lambda-tracing)</code>)  *No description* __*Optional*__
   * **vpc** (<code>[aws_ec2.IVpc](#aws-cdk-lib-aws-ec2-ivpc)</code>)  The VPC for this stack. __*Optional*__
 
 
@@ -254,6 +256,7 @@ Name | Type | Description
 **handler**? | <code>[aws_lambda.IFunction](#aws-cdk-lib-aws-lambda-ifunction)</code> | custom lambda function for the API.<br/>__*Default*__: A Lambda function with Lavavel and Bref support will be created
 **lambdaCodePath**? | <code>string</code> | custom lambda code asset path.<br/>__*Default*__: DEFAULT_LAMBDA_ASSET_PATH
 **rdsProxy**? | <code>[aws_rds.IDatabaseProxy](#aws-cdk-lib-aws-rds-idatabaseproxy)</code> | RDS Proxy for the Lambda function.<br/>__*Default*__: no db proxy
+**tracing**? | <code>[aws_lambda.Tracing](#aws-cdk-lib-aws-lambda-tracing)</code> | __*Optional*__
 **vpc**? | <code>[aws_ec2.IVpc](#aws-cdk-lib-aws-ec2-ivpc)</code> | The VPC for this stack.<br/>__*Optional*__
 
 
@@ -314,6 +317,7 @@ Name | Type | Description
 **handler**? | <code>[aws_lambda.IFunction](#aws-cdk-lib-aws-lambda-ifunction)</code> | custom lambda function for the API.<br/>__*Default*__: A Lambda function with Lavavel and Bref support will be created
 **lambdaCodePath**? | <code>string</code> | custom lambda code asset path.<br/>__*Default*__: DEFAULT_LAMBDA_ASSET_PATH
 **rdsProxy**? | <code>[aws_rds.IDatabaseProxy](#aws-cdk-lib-aws-rds-idatabaseproxy)</code> | RDS Proxy for the Lambda function.<br/>__*Default*__: no db proxy
+**tracing**? | <code>[aws_lambda.Tracing](#aws-cdk-lib-aws-lambda-tracing)</code> | __*Optional*__
 **vpc**? | <code>[aws_ec2.IVpc](#aws-cdk-lib-aws-ec2-ivpc)</code> | The VPC for this stack.<br/>__*Optional*__
 
 
