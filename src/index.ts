@@ -90,6 +90,11 @@ export interface ServerlessApiProps {
    * @default - false
    */
   readonly disableExecuteApiEndpoint?: boolean;
+
+  /*
+   * Whether to activate x-ray tracing
+   */
+  readonly tracing?: lambda.Tracing;
 }
 
 /**
@@ -124,6 +129,7 @@ export class ServerlessApi extends Construct {
       },
       timeout: Duration.seconds(120),
       vpc: props.vpc,
+      tracing: props.tracing,
     });
 
     // allow lambda execution role to connect to RDS proxy
