@@ -105,7 +105,7 @@ export class ServerlessApi extends Construct {
         APP_STORAGE: '/tmp',
         DB_WRITER: props.databaseConfig?.writerEndpoint ?? '',
         DB_READER: props.databaseConfig?.readerEndpoint ?? props.databaseConfig?.writerEndpoint ?? '',
-        DB_USER: props.databaseConfig?.masterUserName ?? DEFAULT_DB_MASTER_USER,
+        DB_USERNAME: props.databaseConfig?.masterUserName ?? DEFAULT_DB_MASTER_USER,
       },
       timeout: Duration.seconds(120),
       vpc: props.vpc,
