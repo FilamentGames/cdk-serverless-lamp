@@ -4,6 +4,7 @@ import {
   aws_ec2 as ec2,
   aws_rds as rds,
 } from 'aws-cdk-lib';
+import { Tracing } from 'aws-cdk-lib/aws-lambda';
 import { ServerlessLaravel, DatabaseCluster, ServerlessLaravelConsole } from './index';
 
 export class IntegTesting {
@@ -43,6 +44,7 @@ export class IntegTesting {
       databaseConfig: {
         writerEndpoint: db.rdsProxy!.endpoint,
       },
+      tracing: Tracing.ACTIVE,
     });
 
     // the ServerlessLaravelConsole
