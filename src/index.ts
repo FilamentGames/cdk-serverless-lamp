@@ -127,7 +127,7 @@ export class ServerlessApi extends Construct {
         DB_USERNAME: props.databaseConfig?.masterUserName ?? DEFAULT_DB_MASTER_USER,
         ...props.environment,
       },
-      timeout: Duration.seconds(120),
+      timeout: Duration.seconds(25) /* api gateway has a 29 second timeout */,
       vpc: props.vpc,
       tracing: props.tracing,
     });
