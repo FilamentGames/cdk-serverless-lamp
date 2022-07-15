@@ -600,7 +600,7 @@ Object {
           ],
         },
         "Runtime": "provided.al2",
-        "Timeout": 120,
+        "Timeout": 25,
         "TracingConfig": Object {
           "Mode": "Active",
         },
