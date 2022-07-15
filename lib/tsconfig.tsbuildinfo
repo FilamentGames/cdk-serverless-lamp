@@ -6126,7 +6126,7 @@
         "affectsGlobalScope": false
       },
       "../src/index.ts": {
-        "version": "29ff012c34956502b2faa4db0e5c4f15780388060d38aa82c1206778b9b9952d",
+        "version": "25ade03c1e2794fe4956c90c198994d49835edb11da5fcf5b3c21a12e0626df9",
         "affectsGlobalScope": false
       },
       "../src/integ.default.ts": {
